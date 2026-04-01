@@ -1,68 +1,503 @@
-/* General Styles */
+/* ============================================================
+   ECE417 Results — Windows 2000 / Microsoft 2000 Style Theme
+   ============================================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Windows 2000 System Colors */
+:root {
+    --win-bg:          #008080;   /* Classic teal desktop */
+    --win-grey:        #d4d0c8;   /* Window background */
+    --win-dark:        #808080;   /* Dark border */
+    --win-darkest:     #404040;   /* Darkest shadow */
+    --win-light:       #ffffff;   /* Light highlight */
+    --win-mid:         #c0c0c0;   /* Mid grey */
+    --win-titlebar:    #000080;   /* Classic navy title bar */
+    --win-titletext:   #ffffff;
+    --win-blue:        #0000ff;
+    --win-text:        #000000;
+    --win-inset:       #808080;
+    --win-panel-bg:    #d4d0c8;
+    --win-input-bg:    #ffffff;
+    --win-status-bg:   #d4d0c8;
+    --taskbar-bg:      #d4d0c8;
+}
+
+/* Windows 2000 Raised Border (outset) */
+.raised {
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+}
+
+/* Windows 2000 Sunken Border (inset) */
+.sunken {
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+}
+
+/* --- Body & Desktop --- */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: "Tahoma", "MS Sans Serif", Arial, sans-serif;
+    font-size: 11px;
+    background-color: var(--win-bg);
+    color: var(--win-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Header Style */
-h1 {
-    text-align: center;
-    color: #0056b3;
-    margin-top: 20px;
+/* --- Taskbar --- */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: var(--taskbar-bg);
+    border-top: 2px solid var(--win-light);
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    gap: 4px;
+    z-index: 1000;
 }
 
-/* Input and Button Styles */
-input[type="text"] {
-    display: block;
-    margin: 20px auto;
-    padding: 10px;
-    width: 80%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-button {
-    display: block;
-    margin: 0 auto;
-    padding: 10px 20px;
-    background-color: #0056b3;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+.start-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--win-grey);
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
     cursor: pointer;
-    font-size: 16px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    height: 22px;
 }
-
-button:hover {
-    background-color: #004494;
+.start-button:active {
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
 }
-
-/* Output Container Style */
-#output {
+.taskbar-spacer { flex: 1; }
+.taskbar-clock {
+    padding: 2px 8px;
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    font-size: 11px;
+    min-width: 65px;
     text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e9ecef;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    input[type="text"], button {
-        width: 90%;
-    }
-    #output {
-        width: 90%;
-    }
+/* --- Desktop --- */
+.desktop {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 20px 50px 20px;
+    min-height: calc(100vh - 30px);
+}
+
+/* --- Window --- */
+.window {
+    background: var(--win-grey);
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+}
+
+/* --- Title Bar --- */
+.title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    padding: 3px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 24px;
+}
+.title-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--win-titletext);
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.title-bar-icon { font-size: 14px; }
+.title-bar-controls { display: flex; gap: 2px; }
+.title-btn {
+    width: 16px;
+    height: 14px;
+    background: var(--win-grey);
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+    cursor: pointer;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    font-family: "Tahoma", Arial, sans-serif;
+}
+.title-btn:active {
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+}
+.close-btn { background: var(--win-grey); }
+
+/* --- Menu Bar --- */
+.menu-bar {
+    background: var(--win-grey);
+    display: flex;
+    gap: 0;
+    padding: 2px 2px 0 2px;
+    border-bottom: 1px solid var(--win-dark);
+}
+.menu-item {
+    padding: 2px 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.menu-item:hover {
+    background: var(--win-titlebar);
+    color: white;
+}
+
+/* --- Window Body --- */
+.window-body { display: flex; flex-direction: column; flex: 1; }
+
+/* --- Toolbar --- */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px 4px;
+    background: var(--win-grey);
+    border-bottom: 1px solid var(--win-dark);
+}
+.toolbar-btn {
+    padding: 3px 8px;
+    background: var(--win-grey);
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    white-space: nowrap;
+}
+.toolbar-btn:hover { background: #e8e4dc; }
+.toolbar-btn:active {
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+}
+.toolbar-sep {
+    width: 2px;
+    height: 20px;
+    border-left: 2px solid var(--win-darkest);
+    border-right: 2px solid var(--win-light);
+    margin: 0 4px;
+}
+
+/* --- Address Bar --- */
+.address-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 6px;
+    background: var(--win-grey);
+    border-bottom: 1px solid var(--win-dark);
+}
+.address-label { font-size: 11px; white-space: nowrap; }
+.address-input {
+    flex: 1;
+    height: 20px;
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    background: var(--win-input-bg);
+    font-family: inherit;
+    font-size: 11px;
+    padding: 0 4px;
+    outline: none;
+}
+.address-go {
+    padding: 2px 10px;
+    height: 22px;
+    background: var(--win-grey);
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+}
+.address-go:active {
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+}
+
+/* --- Content Area --- */
+.content-area {
+    padding: 10px;
+    background: var(--win-grey);
+    flex: 1;
+}
+
+/* --- Content Header Banner --- */
+.content-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--win-titlebar);
+    color: white;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+}
+.header-icon { font-size: 30px; }
+.header-title {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+.header-subtitle {
+    font-size: 11px;
+    opacity: 0.85;
+    margin-top: 2px;
+}
+
+/* --- HR Divider --- */
+.hr-divider {
+    height: 4px;
+    border-top:    2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-light);
+    margin: 6px 0;
+}
+
+/* --- Panel Container --- */
+.panel-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* --- Panels --- */
+.info-panel, .form-panel {
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    background: var(--win-grey);
+    flex: 1;
+}
+.panel-title {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+}
+.panel-content {
+    padding: 10px;
+    font-size: 11px;
+    line-height: 1.7;
+}
+.panel-content p { margin-bottom: 6px; }
+.panel-content ul {
+    margin-left: 18px;
+    margin-bottom: 6px;
+}
+.panel-content li { margin-bottom: 2px; }
+.info-note {
+    color: #800000;
+    font-weight: bold;
+}
+
+/* --- Form Elements --- */
+.form-group { margin-bottom: 10px; }
+.form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+.form-input {
+    width: 100%;
+    height: 22px;
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    background: var(--win-input-bg);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 0 4px;
+    outline: none;
+}
+.form-input:focus {
+    border-color: var(--win-titlebar);
+}
+
+.form-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+/* --- Windows Buttons --- */
+.win-btn {
+    padding: 4px 18px;
+    background: var(--win-grey);
+    border-top:    2px solid var(--win-light);
+    border-left:   2px solid var(--win-light);
+    border-right:  2px solid var(--win-darkest);
+    border-bottom: 2px solid var(--win-darkest);
+    cursor: pointer;
+    font-family: "Tahoma", Arial, sans-serif;
+    font-size: 11px;
+    min-width: 80px;
+}
+.win-btn:hover { background: #e8e4dc; }
+.win-btn:active {
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    padding: 5px 17px 3px 19px;
+}
+.win-btn-primary { font-weight: bold; }
+
+/* --- Status Box --- */
+.status-box {
+    margin-top: 10px;
+    padding: 4px 6px;
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    background: var(--win-input-bg);
+    font-size: 11px;
+    min-height: 24px;
+    color: #444;
+}
+
+/* --- Results Area --- */
+.results-area {
+    margin-top: 8px;
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    background: var(--win-grey);
+}
+.results-area.hidden { display: none; }
+.results-header {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+}
+.results-content {
+    padding: 12px;
+}
+.results-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+}
+.results-table th {
+    background: #000080;
+    color: white;
+    text-align: left;
+    padding: 4px 10px;
+    border: 1px solid #0000aa;
+}
+.results-table td {
+    padding: 4px 10px;
+    border: 1px solid var(--win-dark);
+    background: white;
+}
+.results-table tr:nth-child(even) td {
+    background: #f0f0f0;
+}
+.results-table .score-row td {
+    font-weight: bold;
+}
+.error-text {
+    color: #cc0000;
+    font-size: 12px;
+    padding: 6px;
+}
+.loading-text {
+    color: #000080;
+    font-size: 12px;
+    padding: 6px;
+}
+
+/* --- Status Bar --- */
+.status-bar {
+    display: flex;
+    border-top: 1px solid var(--win-dark);
+    padding: 2px 4px;
+    gap: 4px;
+    background: var(--win-grey);
+}
+.status-pane {
+    flex: 1;
+    border-top:    2px solid var(--win-darkest);
+    border-left:   2px solid var(--win-darkest);
+    border-right:  2px solid var(--win-light);
+    border-bottom: 2px solid var(--win-light);
+    padding: 1px 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.status-pane:last-child { flex: 0 0 auto; min-width: 80px; text-align: center; }
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .panel-container { flex-direction: column; }
+    .window { max-width: 100%; }
+    .desktop { padding: 8px 4px 48px 4px; }
+    .title-bar-text { font-size: 10px; }
 }

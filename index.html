@@ -1,14 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECE417 Results</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Examination Results</h1>
-    <input type="text" id="matricInput" placeholder="Enter Matric No">
-    <button id="submitButton">Get Results</button>
-    <div id="output"></div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button">
+            <img src="win2k-logo.png" alt="" class="start-logo" onerror="this.style.display='none'">
+            <strong>Start</strong>
+        </button>
+        <div class="taskbar-spacer"></div>
+        <div class="taskbar-clock" id="clock">12:00 PM</div>
+    </div>
+
+    <!-- Desktop -->
+    <div class="desktop">
+
+        <!-- Window -->
+        <div class="window" id="mainWindow">
+
+            <!-- Title Bar -->
+            <div class="title-bar">
+                <div class="title-bar-left">
+                    <span class="title-bar-icon">📋</span>
+                    <span class="title-bar-text">ECE417 Examination Results — Student Portal</span>
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-btn minimize-btn" title="Minimize">_</button>
+                    <button class="title-btn maximize-btn" title="Maximize">□</button>
+                    <button class="title-btn close-btn" title="Close">✕</button>
+                </div>
+            </div>
+
+            <!-- Menu Bar -->
+            <div class="menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+
+            <!-- Window Body -->
+            <div class="window-body">
+
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <button class="toolbar-btn">🏠 Home</button>
+                    <button class="toolbar-btn">🔄 Refresh</button>
+                    <div class="toolbar-sep"></div>
+                    <button class="toolbar-btn">🖨️ Print</button>
+                    <button class="toolbar-btn">❓ Help</button>
+                </div>
+
+                <!-- Address Bar -->
+                <div class="address-bar">
+                    <label class="address-label">Address:</label>
+                    <input type="text" class="address-input" value="http://ece417.university.edu/results" readonly>
+                    <button class="address-go">Go</button>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area">
+
+                    <!-- Header Banner -->
+                    <div class="content-header">
+                        <div class="header-icon">🎓</div>
+                        <div class="header-text">
+                            <div class="header-title">ECE417 — Electronic Circuits &amp; Systems</div>
+                            <div class="header-subtitle">2025/2026 Academic Session — Examination Results</div>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="hr-divider"></div>
+
+                    <!-- Main Panel -->
+                    <div class="panel-container">
+
+                        <!-- Left: Instructions -->
+                        <div class="info-panel">
+                            <div class="panel-title">ℹ️ Instructions</div>
+                            <div class="panel-content">
+                                <p>Welcome to the ECE417 Results Portal.</p>
+                                <p>To view your examination results, please enter your <strong>Matric Number</strong> in the field provided and click <strong>"Get Results"</strong>.</p>
+                                <p>Results include:</p>
+                                <ul>
+                                    <li>Continuous Assessment (CA/30)</li>
+                                    <li>Examination Score (Exam/70)</li>
+                                    <li>Total Score (Total/100)</li>
+                                </ul>
+                                <p class="info-note">⚠️ For enquiries, contact the department.</p>
+                            </div>
+                        </div>
+
+                        <!-- Right: Query Form -->
+                        <div class="form-panel">
+                            <div class="panel-title">🔍 Result Lookup</div>
+                            <div class="panel-content">
+                                <div class="form-group">
+                                    <label class="form-label" for="matricInput">Matric Number:</label>
+                                    <input type="text" id="matricInput" class="form-input" placeholder="e.g. 20/ENG01/001">
+                                </div>
+                                <div class="form-actions">
+                                    <button id="submitButton" class="win-btn win-btn-primary">Get Results</button>
+                                    <button id="clearButton" class="win-btn">Clear</button>
+                                </div>
+
+                                <!-- Status Bar inside form -->
+                                <div class="status-box" id="statusBox">
+                                    <span id="statusText">Ready. Enter your Matric Number above.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Output -->
+                    <div id="output" class="results-area hidden">
+                        <div class="results-header">📄 Examination Results</div>
+                        <div id="resultsContent" class="results-content"></div>
+                    </div>
+
+                </div>
+                <!-- /content-area -->
+
+            </div>
+            <!-- /window-body -->
+
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-pane" id="statusPane">Ready</div>
+                <div class="status-pane">ECE417 Portal v1.0</div>
+                <div class="status-pane" id="datePane">--/--/----</div>
+            </div>
+
+        </div>
+        <!-- /window -->
+
+    </div>
+    <!-- /desktop -->
+
     <script src="script.js"></script>
 </body>
 </html>
